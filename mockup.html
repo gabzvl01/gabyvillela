@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gaby Villela — Mockup</title>
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Epilogue:wght@400;800&family=Gochi+Hand&display=swap" rel="stylesheet">
+<style>
+  :root { --grape: #3D1E7A; --lime: #D6F26B; --hotpink: #FF6F98; --cream: #FFF7F9; --bubblegum: #F4A6E8; }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    min-height: 100vh;
+    background: radial-gradient(circle at 20% 20%, #FFD1DC, transparent 45%),
+                radial-gradient(circle at 80% 30%, #E9F8B5, transparent 45%),
+                radial-gradient(circle at 50% 90%, #DCD3F7, transparent 50%), var(--cream);
+    font-family: "Epilogue", system-ui, sans-serif; color: var(--grape);
+    display: flex; align-items: center; justify-content: center; gap: 64px; flex-wrap: wrap;
+    padding: 40px 16px;
+  }
+  .side { max-width: 320px; }
+  .side small { font-family: "Gochi Hand", cursive; font-size: 26px; color: var(--hotpink); }
+  .side h1 { font-family: "Bagel Fat One", sans-serif; font-weight: 400; font-size: 56px; line-height: .95; text-transform: uppercase; margin: 6px 0 16px; }
+  .side p { font-size: 17px; line-height: 1.5; margin-bottom: 24px; }
+  .side button {
+    font: 800 15px "Epilogue", sans-serif; text-transform: uppercase;
+    padding: 14px 26px; border-radius: 100px; cursor: pointer;
+    background: var(--lime); color: var(--grape);
+    border: 2.5px solid var(--grape); box-shadow: 4px 4px 0 var(--grape);
+    transition: transform .15s, box-shadow .15s;
+  }
+  .side button:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--grape); }
+
+  .phone {
+    position: relative;
+    width: 414px; height: 868px; padding: 12px;
+    border-radius: 64px; background: #1A1228;
+    box-shadow: 0 0 0 3px #3a2f4d, 0 40px 80px rgba(61,30,122,.35), 14px 14px 0 var(--bubblegum);
+    transform-origin: top center;
+  }
+  .phone::before { /* side buttons */
+    content: ""; position: absolute; right: -6px; top: 200px; width: 4px; height: 90px; border-radius: 4px; background: #3a2f4d;
+  }
+  .screen { width: 390px; height: 844px; border-radius: 52px; overflow: hidden; position: relative; background: #fff; }
+  .screen iframe { width: 100%; height: 100%; border: 0; display: block; }
+  .island {
+    position: absolute; top: 22px; left: 50%; transform: translateX(-50%);
+    width: 122px; height: 35px; border-radius: 20px; background: #000; z-index: 5; pointer-events: none;
+  }
+  @media (min-width: 640px) { body { flex-wrap: nowrap; gap: 48px; } .side { max-width: 280px; } .side h1 { font-size: 48px; } }
+  @media (max-width: 639px) { .side { text-align: center; } }
+</style>
+</head>
+<body>
+  <div class="side">
+    <small>Así se ve en el cel ✦</small>
+    <h1>Gaby Villela</h1>
+    <p>Este es el sitio en tamaño iPhone. Puedes hacer scroll dentro del teléfono.</p>
+    <button id="replay">Ver intro otra vez ↻</button>
+  </div>
+
+  <div class="phone" id="phone">
+    <div class="island"></div>
+    <div class="screen"><iframe id="site" src="index.html?intro" title="Sitio de Gaby Villela"></iframe></div>
+  </div>
+
+<script>
+  const frame = document.getElementById("site");
+  document.getElementById("replay").addEventListener("click", () => {
+    frame.src = "index.html?intro&t=" + Date.now();
+  });
+  // Shrink the phone to fit short screens
+  const phone = document.getElementById("phone");
+  const fit = () => {
+    const wide = innerWidth >= 640;
+    const s = Math.min(1, (innerHeight - 80) / 868, (innerWidth - (wide ? 400 : 32)) / 414);
+    phone.style.transform = `scale(${s})`;
+    phone.style.marginBottom = `${-(1 - s) * 868}px`;
+  };
+  addEventListener("resize", fit); fit();
+</script>
+</body>
+</html>
