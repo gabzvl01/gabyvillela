@@ -164,7 +164,27 @@
   @keyframes wobble {
     50% { border-radius: 42% 58% 55% 45% / 48% 60% 40% 52%; transform: rotate(6deg); }
   }
-  .hero__photo img { width: 100%; }
+  .hero__photo > img { width: 100%; }
+  .snowpeek {
+    position: absolute; right: -10%; top: 4%; width: 34%; z-index: 2;
+    text-decoration: none; transform: rotate(8deg);
+    animation: peek 4s ease-in-out infinite;
+  }
+  .snowpeek img {
+    width: 100%; aspect-ratio: 1; object-fit: cover; object-position: 50% 30%;
+    border-radius: 50%; border: 5px solid #fff;
+    box-shadow: 0 0 0 3px var(--grape), 6px 6px 0 3px var(--lime);
+    transition: transform .25s;
+  }
+  .snowpeek:hover img { transform: scale(1.08) rotate(-6deg); }
+  .snowpeek__bubble {
+    position: absolute; top: 96%; right: 20%; white-space: nowrap;
+    background: #fff; color: var(--grape); border: 2.5px solid var(--grape);
+    border-radius: 18px 18px 4px 18px; padding: 5px 12px;
+    font-family: var(--hand); font-size: 19px; transform: rotate(-10deg);
+    box-shadow: 3px 3px 0 var(--grape);
+  }
+  @keyframes peek { 50% { transform: rotate(3deg) translateY(-8px); } }
 
   .bubble {
     background: #fff;
@@ -384,6 +404,8 @@
     nav ul { order: 3; flex-basis: 100%; justify-content: center; gap: 20px; font-size: 13px; padding-top: 4px; }
     section { padding: 64px 0; }
     .snowcard__bubble { right: 0; }
+    .snowpeek { right: -12%; top: 6%; width: 36%; }
+    .snowpeek__bubble { font-size: 16px; }
     .hero__stage { grid-template-columns: 1fr; justify-items: center; text-align: left; }
     .hero__stage .bubble { order: 2; }
     .hero__photo { order: 1; width: min(320px, 80vw); }
@@ -446,6 +468,10 @@
       </p>
       <div class="hero__photo">
         <img src="img/gaby-2.png" width="520" height="719" alt="Gaby Villela sentada, con cara de 'ajá, sigue'">
+        <a class="snowpeek" href="#about" aria-label="Conoce a Snow, la chihuahua de Gaby">
+          <span class="snowpeek__bubble">Y yo soy Snow 👀</span>
+          <img src="img/snow.jpg" width="810" height="900" alt="">
+        </a>
       </div>
       <div class="hero__ctas">
         <a class="pill pill--hot" href="#shows">Ver shows ↗</a>
