@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-HN">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gaby Villela — Comedia</title>
-<meta name="description" content="Gaby Villela: comediante hondureña, Chihuahua Mom y Problema de Honduras. Próximos shows, booking para eventos y más.">
+<title>Gaby Villela | Comediante de Stand-Up en Honduras · Shows y Eventos</title>
+<meta name="description" content="Gaby Villela, comediante de stand-up hondureña. Shows de comedia en vivo en Tegucigalpa y Centroamérica, y comedia para eventos corporativos, bodas y fiestas. Contrátala por WhatsApp.">
 <meta name="theme-color" content="#3D1E7A">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_HN">
@@ -18,7 +18,7 @@
 <link rel="canonical" href="https://gabyvillela.lol/">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Gaby Villela","jobTitle":"Comediante","description":"Comediante de stand-up hondureña.","email":"mailto:cdfcomedia@gmail.com","telephone":"+50496199214","url":"https://gabyvillela.lol/","image":"https://gabyvillela.lol/img/og.jpg","sameAs":["https://instagram.com/gabyvillela_"]}
+{"@context":"https://schema.org","@type":"Person","name":"Gaby Villela","jobTitle":"Comediante de stand-up","description":"Comediante de stand-up hondureña. Shows de comedia en vivo y comedia para eventos corporativos, bodas y festivales en Honduras y Centroamérica.","nationality":{"@type":"Country","name":"Honduras"},"knowsAbout":["Stand-up","Comedia","Humor para eventos corporativos"],"areaServed":[{"@type":"City","name":"Tegucigalpa"},{"@type":"City","name":"San Pedro Sula"},{"@type":"Country","name":"Honduras"},{"@type":"Place","name":"Centroamérica"}],"email":"mailto:cdfcomedia@gmail.com","telephone":"+50496199214","url":"https://gabyvillela.lol/","image":"https://gabyvillela.lol/img/og.jpg","sameAs":["https://instagram.com/gabyvillela_"]}
 </script>
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -324,6 +324,26 @@
   .stat:nth-child(4) { background: var(--pink-deep); transform: rotate(-1.5deg); }
   .stat:nth-child(4) b, .stat:nth-child(4) p { color: #fff; }
 
+  /* ---------- Eventos + FAQ ---------- */
+  .eventos { padding-top: 32px; }
+  .eventos .h2 { color: var(--grape); margin-bottom: 16px; }
+  .eventos__intro { font-size: 20px; max-width: 760px; margin-bottom: 36px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+  .card { background: #fff; border: 2.5px solid var(--grape); border-radius: 28px; padding: 24px; box-shadow: 5px 5px 0 var(--grape); }
+  .card:nth-child(1) { box-shadow: 5px 5px 0 var(--lime), 5px 5px 0 2.5px var(--grape); }
+  .card:nth-child(2) { box-shadow: 5px 5px 0 var(--bubblegum), 5px 5px 0 2.5px var(--grape); }
+  .card:nth-child(3) { box-shadow: 5px 5px 0 var(--sun), 5px 5px 0 2.5px var(--grape); }
+  .card h3 { font-family: var(--display); font-weight: 400; font-size: 26px; line-height: 1.1; color: var(--grape); margin-bottom: 8px; }
+  .faq__title { font-family: var(--display); font-weight: 400; text-transform: uppercase; color: var(--grape); font-size: clamp(32px, 5vw, 52px); margin: 64px 0 20px; }
+  .faq { display: grid; gap: 12px; max-width: 860px; }
+  .faq details { background: var(--blush); border-radius: 22px; padding: 16px 22px; }
+  .faq summary { cursor: pointer; font-weight: 800; font-size: 18px; color: var(--grape); list-style: none; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: " +"; color: var(--pink-deep); }
+  .faq details[open] summary::after { content: " –"; }
+  .faq details p { margin-top: 10px; }
+  .faq a { color: var(--pink-deep); font-weight: 800; }
+
   /* ---------- Booking ---------- */
   .booking {
     background: var(--pink-deep); color: #fff;
@@ -445,6 +465,7 @@
       <ul>
         <li><a href="#shows">Shows</a></li>
         <li><a href="#about">Sobre Gaby</a></li>
+        <li><a href="#eventos">Eventos</a></li>
         <li><a href="https://instagram.com/gabyvillela_" target="_blank" rel="noopener">@gabyvillela_</a></li>
       </ul>
       <a class="pill pill--lime" href="#booking">Booking ↗</a>
@@ -463,7 +484,7 @@
 
     <div class="hero__stage">
       <p class="bubble">
-        Lleva más de una década convirtiendo sus traumas en tu entretenimiento. Es un win-win.
+        Comediante de stand-up hondureña. Lleva más de una década convirtiendo sus traumas en tu entretenimiento. Es un win-win.
         <small>(Para ti.)</small>
       </p>
       <div class="hero__photo">
@@ -530,6 +551,48 @@
   </div>
 </section>
 
+<section class="eventos" id="eventos">
+  <div class="wrap">
+    <span class="kicker">Para eventos</span>
+    <h2 class="h2">Comedia para tu evento</h2>
+    <p class="eventos__intro">Shows de stand-up en vivo para <b>eventos corporativos</b>, <b>bodas</b>, fiestas y festivales en <b>Tegucigalpa</b>, San Pedro Sula y toda Honduras. Y en Centroamérica, si hay boleto de avión.</p>
+    <div class="cards">
+      <article class="card">
+        <h3>Eventos corporativos</h3>
+        <p>Fiestas de fin de año, convenciones, team buildings y lanzamientos. Humor que hace reír a todo el equipo sin que Recursos Humanos tenga que intervenir. (Casi nunca.)</p>
+      </article>
+      <article class="card">
+        <h3>Bodas, cumpleaños y quinceañeras</h3>
+        <p>Un set de comedia a la medida para que tus invitados se rían de algo que no sea el discurso del tío.</p>
+      </article>
+      <article class="card">
+        <h3>Bares, teatros y festivales</h3>
+        <p>Shows de stand-up en vivo en Honduras y Centroamérica. Ha presentado en cinco países y en festivales internacionales.</p>
+      </article>
+    </div>
+
+    <h2 class="faq__title">Preguntas frecuentes</h2>
+    <div class="faq">
+      <details>
+        <summary>¿Dónde puedo ver stand-up en Tegucigalpa?</summary>
+        <p>Revisa los <a href="#shows">próximos shows</a> en esta página o síguela en <a href="https://instagram.com/gabyvillela_" target="_blank" rel="noopener">@gabyvillela_</a>, donde anuncia sus fechas de comedia en Tegucigalpa y otras ciudades.</p>
+      </details>
+      <details>
+        <summary>¿Cuánto cuesta contratar a una comediante para un evento?</summary>
+        <p>Depende de la fecha, la ciudad, el tipo de evento y la duración del show. Escríbele por <a href="https://wa.me/50496199214?text=Hola%20Gaby%2C%20quiero%20cotizar%20un%20show%20para%20mi%20evento" target="_blank" rel="noopener">WhatsApp</a> o a <a href="mailto:cdfcomedia@gmail.com">cdfcomedia@gmail.com</a> y te manda una cotización.</p>
+      </details>
+      <details>
+        <summary>¿El humor es apto para empresas y familias?</summary>
+        <p>Sí. El material se adapta al público: más limpio para eventos corporativos y familiares, más oscuro para bares y shows de noche. Tú decides cuánto picante.</p>
+      </details>
+      <details>
+        <summary>¿Hace shows fuera de Honduras?</summary>
+        <p>Sí. Ha llevado su comedia a cinco países y a festivales internacionales. Escríbele con la ciudad y la fecha de tu evento.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
 <section class="booking" id="booking">
   <svg class="rings" id="rings" viewBox="-550 -550 1100 1100" aria-hidden="true"></svg>
   <div class="wrap">
@@ -556,6 +619,7 @@
     <ul>
       <li><a href="#shows">Shows</a></li>
       <li><a href="#about">Sobre Gaby</a></li>
+      <li><a href="#eventos">Eventos</a></li>
       <li><a href="#booking">Booking</a></li>
       <li><a href="https://instagram.com/gabyvillela_" target="_blank" rel="noopener">@gabyvillela_</a></li>
     </ul>
@@ -603,6 +667,23 @@
 
   if (!SHOWS.some(s => new Date(s.date + "T12:00:00") >= today)) {
     list.insertAdjacentHTML("beforeend", `<p class="shows__empty">Nuevas fechas muy pronto. Mientras, síguela en <a href="https://instagram.com/gabyvillela_" target="_blank" rel="noopener">@gabyvillela_</a> ✦</p>`);
+  }
+
+  // ---- Tell Google about each upcoming show (Event structured data) ----
+  const events = SHOWS.filter(s => new Date(s.date + "T12:00:00") >= today).map(s => ({
+    "@context": "https://schema.org", "@type": "ComedyEvent",
+    name: `${s.title} — Gaby Villela`, startDate: s.date,
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    location: { "@type": "Place", name: s.place.split(" · ")[0], address: s.place.split(" · ")[0] },
+    performer: { "@type": "Person", name: "Gaby Villela" },
+    organizer: { "@type": "Person", name: "Gaby Villela", url: "https://gabyvillela.lol/" },
+    image: "https://gabyvillela.lol/img/og.jpg",
+    offers: { "@type": "Offer", url: s.link || `https://wa.me/${WHATSAPP}`, availability: "https://schema.org/InStock" },
+  }));
+  if (events.length) {
+    const ld = document.createElement("script"); ld.type = "application/ld+json";
+    ld.textContent = JSON.stringify(events); document.head.appendChild(ld);
   }
 
   // ---- Ticker + band ----
