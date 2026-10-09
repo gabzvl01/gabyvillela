@@ -347,14 +347,31 @@
   .card:nth-child(2) { box-shadow: 5px 5px 0 var(--bubblegum), 5px 5px 0 2.5px var(--grape); }
   .card:nth-child(3) { box-shadow: 5px 5px 0 var(--sun), 5px 5px 0 2.5px var(--grape); }
   .card h3 { font-family: var(--display); font-weight: 400; font-size: 26px; line-height: 1.1; color: var(--grape); margin-bottom: 8px; }
-  .faq__title { font-family: var(--display); font-weight: 400; text-transform: uppercase; color: var(--grape); font-size: clamp(32px, 5vw, 52px); margin: 64px 0 20px; }
-  .faq { display: grid; gap: 12px; max-width: 860px; }
-  .faq details { background: var(--blush); border-radius: 22px; padding: 16px 22px; }
-  .faq summary { cursor: pointer; font-weight: 800; font-size: 18px; color: var(--grape); list-style: none; }
+  .faq__wrap { display: grid; grid-template-columns: minmax(260px, 1fr) 2fr; gap: 48px; align-items: start; margin-top: 80px; }
+  .faq__side { position: sticky; top: 110px; }
+  .faq__title { font-family: var(--display); font-weight: 400; text-transform: uppercase; color: var(--grape); font-size: clamp(36px, 4.6vw, 60px); line-height: .95; margin-bottom: 16px; }
+  .faq__more { font-size: 17px; margin-bottom: 20px; max-width: 300px; }
+  .faq { display: grid; gap: 14px; }
+  .faq details {
+    background: #fff; border: 2.5px solid var(--grape); border-radius: 24px;
+    box-shadow: 4px 4px 0 var(--grape); transition: box-shadow .2s, transform .2s, background .2s;
+  }
+  .faq details:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--grape); }
+  .faq details[open] { background: var(--blush); }
+  .faq summary {
+    cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 18px 20px 18px 24px; font-weight: 800; font-size: 19px; color: var(--grape);
+  }
   .faq summary::-webkit-details-marker { display: none; }
-  .faq summary::after { content: " +"; color: var(--pink-deep); }
-  .faq details[open] summary::after { content: " –"; }
-  .faq details p { margin-top: 10px; }
+  .faq summary::after {
+    content: "+"; flex: none; display: grid; place-items: center;
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--lime); border: 2px solid var(--grape);
+    font-family: var(--display); font-size: 24px; line-height: 1; color: var(--grape);
+    transition: transform .25s, background .25s;
+  }
+  .faq details[open] summary::after { transform: rotate(45deg); background: var(--bubblegum); }
+  .faq details p { padding: 0 24px 20px; font-size: 17px; }
   .faq a { color: var(--pink-deep); font-weight: 800; }
 
   /* ---------- Booking ---------- */
@@ -460,6 +477,10 @@
     .hero__ctas { order: 3; align-items: center; }
     .bubble--right { justify-self: center; }
     .about__grid { grid-template-columns: 1fr; }
+    .faq__wrap { grid-template-columns: 1fr; gap: 20px; margin-top: 56px; }
+    .faq__side { position: static; }
+    .faq summary { font-size: 17px; padding: 14px 14px 14px 18px; }
+    .faq details p { padding: 0 18px 16px; }
     .show { grid-template-columns: 96px 1fr; }
     .show__date b { font-size: 30px; }
     .show > :last-child { grid-column: 1 / -1; justify-self: start; }
@@ -603,7 +624,12 @@
       </article>
     </div>
 
-    <h2 class="faq__title">Preguntas frecuentes</h2>
+    <div class="faq__wrap">
+    <div class="faq__side">
+      <h2 class="faq__title">Preguntas frecuentes</h2>
+      <p class="faq__more">¿Tienes otra pregunta? Escríbele, no muerde. (Snow sí.)</p>
+      <a class="pill pill--lime" href="https://wa.me/50496199214?text=Hola%20Gaby%2C%20tengo%20una%20pregunta" target="_blank" rel="noopener">Preguntar por WhatsApp ↗</a>
+    </div>
     <div class="faq">
       <details>
         <summary>¿Dónde puedo ver stand-up en Tegucigalpa?</summary>
@@ -621,6 +647,7 @@
         <summary>¿Hace shows fuera de Honduras?</summary>
         <p>Sí. Ha llevado su comedia a cinco países y a festivales internacionales. Escríbele con la ciudad y la fecha de tu evento.</p>
       </details>
+    </div>
     </div>
   </div>
 </section>
