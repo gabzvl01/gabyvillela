@@ -739,8 +739,9 @@
   // Leave `link` out (or empty) and the button becomes "Reservar" via WhatsApp.
   const WHATSAPP = "50496199214";
   const SHOWS = [
-    { date: "2026-11-17", title: "Toma tu Tomate", place: "Perú" },
-    { date: "2026-11-20", title: "Bits", place: "Perú" },
+    { date: "2026-11-17", title: "Toma tu Tomate", place: "Lima, Perú", link: "https://www.joinnus.com/events/stand-up/lima-toma-tu-tomate-standup-comedy-71784" },
+    { date: "2026-11-20", title: "Bits", place: "Lima, Perú", link: "https://www.joinnus.com/events/stand-up/lima-bits-lo-mejor-de-la-standup-de-lima-71783" },
+    { date: "2026-11-28", title: "Enemy's House", place: "Lima, Perú · Entrada gratis", free: true, ig: "https://www.instagram.com/enemyshouse/" },
   ];
 
   const MONTHS_LONG = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
@@ -758,6 +759,7 @@
     let action;
     if (past) action = `<span class="tag">Ya pasó 😢</span>`;
     else if (s.soldOut) action = `<span class="tag">Sold Out</span>`;
+    else if (s.free) action = `<a class="pill pill--lime" href="${s.ig}" target="_blank" rel="noopener">Gratis · Ver IG ↗</a>`;
     else if (s.link) action = `<a class="pill pill--lime" href="${s.link}" target="_blank" rel="noopener">Comprar ↗</a>`;
     else {
       // No ticket link yet: reserve via WhatsApp with the show already in the message
@@ -785,7 +787,7 @@
     performer: { "@type": "Person", name: "Gaby Villela" },
     organizer: { "@type": "Person", name: "Gaby Villela", url: "https://gabyvillela.lol/" },
     image: "https://gabyvillela.lol/img/og.jpg",
-    offers: { "@type": "Offer", url: s.link || `https://wa.me/${WHATSAPP}`, availability: "https://schema.org/InStock" },
+    offers: { "@type": "Offer", url: s.link || s.ig || `https://wa.me/${WHATSAPP}`, availability: "https://schema.org/InStock", ...(s.free ? { price: "0", priceCurrency: "PEN" } : {}) },
   }));
   if (events.length) {
     const ld = document.createElement("script"); ld.type = "application/ld+json";
