@@ -271,6 +271,9 @@
   .show__date span { font-weight: 800; text-transform: uppercase; font-size: 13px; letter-spacing: .06em; }
   .show h3 { font-family: var(--display); font-weight: 400; font-size: clamp(20px, 2.6vw, 28px); color: var(--grape); line-height: 1.1; }
   .show p { color: #5a4f6b; margin-top: 4px; }
+  .show p.show__time { color: var(--pink-deep); font-weight: 800; font-size: 18px; }
+  .show p.show__time span { color: #5a4f6b; font-weight: 600; font-size: 14px; }
+  .show p a { color: var(--pink-deep); font-weight: 800; }
   .show .pill { box-shadow: 3px 3px 0 var(--grape); padding: 12px 22px; }
   .tag {
     display: inline-block; padding: 10px 18px; border-radius: 100px;
@@ -739,9 +742,10 @@
   // Leave `link` out (or empty) and the button becomes "Reservar" via WhatsApp.
   const WHATSAPP = "50496199214";
   const SHOWS = [
-    { date: "2026-11-17", title: "Toma tu Tomate", place: "Lima, Perú", link: "https://www.joinnus.com/events/stand-up/lima-toma-tu-tomate-standup-comedy-71784" },
-    { date: "2026-11-20", title: "Bits", place: "Lima, Perú", link: "https://www.joinnus.com/events/stand-up/lima-bits-lo-mejor-de-la-standup-de-lima-71783" },
-    { date: "2026-11-28", title: "Enemy's House", place: "Lima, Perú · Entrada gratis", free: true, ig: "https://www.instagram.com/enemyshouse/" },
+    // time = hora del show (24h). doors = hora de ingreso (opcional).
+    { date: "2026-11-17", time: "21:00", doors: "20:30", title: "Toma tu Tomate", place: "4 Queens Bar · Miraflores, Lima", address: "Cl. Manuel Bonilla 138, Miraflores, Lima, Perú", link: "https://www.joinnus.com/events/stand-up/lima-toma-tu-tomate-standup-comedy-71784" },
+    { date: "2026-11-20", time: "21:00", doors: "20:30", title: "Bits", place: "4 Queens Bar · Miraflores, Lima", address: "Cl. Manuel Bonilla 138, Miraflores, Lima, Perú", link: "https://www.joinnus.com/events/stand-up/lima-bits-lo-mejor-de-la-standup-de-lima-71783" },
+    { date: "2026-11-28", time: "19:30", title: "Scary Comedy", place: "Enemy's House · Barranco, Lima", address: "Av. Almte. Miguel Grau 393, Barranco, Lima, Perú", free: true, link: "https://www.joinnus.com/events/stand-up/lima-scary-comedy-show-de-comedia-77685", ig: "https://www.instagram.com/enemyshouse/", igHandle: "@enemyshouse" },
   ];
 
   const MONTHS_LONG = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
@@ -749,6 +753,7 @@
   const DAYS = ["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"];
   const today = new Date(); today.setHours(0, 0, 0, 0);
 
+  const fmtTime = t => { if (!t) return ""; const [h, m] = t.split(":").map(Number); return `${h % 12 || 12}:${String(m).padStart(2, "0")} ${h < 12 ? "am" : "pm"}`; };
   const list = document.getElementById("showList");
   SHOWS.forEach(s => {
     const d = new Date(s.date + "T12:00:00");
@@ -759,7 +764,7 @@
     let action;
     if (past) action = `<span class="tag">Ya pasó 😢</span>`;
     else if (s.soldOut) action = `<span class="tag">Sold Out</span>`;
-    else if (s.free) action = `<a class="pill pill--lime" href="${s.ig}" target="_blank" rel="noopener">Gratis · Ver IG ↗</a>`;
+    else if (s.free) action = `<a class="pill pill--lime" href="${s.link || s.ig}" target="_blank" rel="noopener">Gratis · Reservar ↗</a>`;
     else if (s.link) action = `<a class="pill pill--lime" href="${s.link}" target="_blank" rel="noopener">Comprar ↗</a>`;
     else {
       // No ticket link yet: reserve via WhatsApp with the show already in the message
@@ -768,7 +773,7 @@
     }
     el.innerHTML = `
       <div class="show__date"><span>${DAYS[d.getDay()]}</span><b>${String(d.getDate()).padStart(2, "0")}</b><span>${MONTHS[d.getMonth()]} ${d.getFullYear()}</span></div>
-      <div><h3>${s.title}</h3><p>${s.place}</p></div>
+      <div><h3>${s.title}</h3><p class="show__time">${fmtTime(s.time)}${s.doors ? ` <span>(ingreso ${fmtTime(s.doors)})</span>` : ""}</p><p>${s.place}${s.free ? " · <b>Entrada libre</b>" : ""}${s.ig ? ` · <a href="${s.ig}" target="_blank" rel="noopener">${s.igHandle || "IG"}</a>` : ""}</p></div>
       ${action}`;
     list.appendChild(el);
   });
@@ -780,10 +785,10 @@
   // ---- Tell Google about each upcoming show (Event structured data) ----
   const events = SHOWS.filter(s => new Date(s.date + "T12:00:00") >= today).map(s => ({
     "@context": "https://schema.org", "@type": "ComedyEvent",
-    name: `${s.title} — Gaby Villela`, startDate: s.date,
+    name: `${s.title} — Gaby Villela`, startDate: s.time ? `${s.date}T${s.time}:00-05:00` : s.date,
     eventStatus: "https://schema.org/EventScheduled",
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
-    location: { "@type": "Place", name: s.place.split(" · ")[0], address: s.place.split(" · ")[0] },
+    location: { "@type": "Place", name: s.place.split(" · ")[0], address: s.address || s.place },
     performer: { "@type": "Person", name: "Gaby Villela" },
     organizer: { "@type": "Person", name: "Gaby Villela", url: "https://gabyvillela.lol/" },
     image: "https://gabyvillela.lol/img/og.jpg",
